@@ -1,0 +1,202 @@
+\documentclass[11pt]{beamer}
+    \input{shared/Theme_configs}
+% Fonts:
+\usepackage[utf8]{vietnam} % Vietnamese
+
+% Packages
+\usepackage[mode=build]{standalone} % standalone figures
+\usepackage{amsfonts, amsmath, amssymb}
+% \usepackage{algorithm, algorithmicx}
+% \usepackage{subcaption, multicol, array}
+\usepackage{lipsum}
+
+\usepackage{tikz} 
+    \usetikzlibrary{external} 
+    \tikzexternalize
+
+\usepackage{hyperref} 
+    \hypersetup{
+        filecolor=magenta,      
+        urlcolor=cyan,
+        pdfencoding=auto,
+        pdftitle={title},  % Modify your pdf title here
+        pdfauthor={Author name} % Modify your name title here
+        pdfpagemode=FullScreen,
+    }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%--- presentation info
+\title[{Short title on the bottom}]{\textbf{Full title at first slide}}
+\subtitle{\textit{Sub-title at first slide}} %optional
+\author[author on the bottom]{Author$^{1}$}
+\institute[VNU]{
+    $^1$ Affiliation
+    }
+\date[xxx on the bottom]{xxx conference, Vietnam, Dec. 2024}
+
+% Compile and render only one or a few labeled frames (note that no space between labels):
+% \includeonlyframes{title,breakslides,normal,equations,blocktheme,thank}
+
+\begin{document}
+
+%#####################################################
+\begin{frame}[t, label=title]
+  \titlepage
+\end{frame}
+
+%#####################################################
+\section{First section}
+
+%-----------------------------------------------------
+\begin{frame}[t, label=normal]
+\frametitle{Normal slide}
+
+    \begin{columns}
+        \column{.5\textwidth}
+        \only<1->{
+            \lipsum[1][1]\cite{Cao2020}
+        }
+
+        \only<3-3>{
+            \begin{lemma}
+                \lipsum[1][1]
+            \end{lemma}
+        }
+        
+        \column{.5\textwidth}
+        \only<2->{
+            Example figure\cite{Crafts2023}:
+            \begin{figure}
+                \centering
+                \includegraphics[width=\linewidth]{figures/example_fig.pdf}
+            \end{figure}
+        }
+        \only<4-4>{
+            \begin{theorem}
+                \lipsum[1][1]\cite{jiang2024terahertz}
+            \end{theorem}
+        }
+    \end{columns}
+
+    \only<5->{
+        \vspace{0.5cm}
+        \lipsum[1][1-5] \\
+        \lipsum[1][1-3]
+    }
+\end{frame}
+
+%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+\subsection{First subsection}
+
+%-----------------------------------------------------
+\begin{frame}[t, label=equations]
+\frametitle{Equation, itemize, and enumerate}
+
+    \begin{enumerate}
+        \item A normal equation:
+        \begin{equation}
+            E = mc^2
+        \end{equation}
+        \begin{enumerate}
+            \item level 1.1
+            \begin{enumerate}
+                \item level 1.1.1
+                \item level 1.1.2
+            \end{enumerate}
+        \end{enumerate}
+    \end{enumerate}
+    
+    \begin{itemize}
+        \item Equation with tcbox:
+        \begin{center}
+            \tcboxmath{
+                E = mc^2
+            }
+        \end{center}
+        \begin{itemize}
+            \item level 1.1
+            \begin{itemize}
+                \item level 1.1.1
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+\subsection{Second subsection}
+
+%-----------------------------------------------------
+\begin{frame}[t, label=blocktheme]
+\frametitle{Block themes}
+
+    \begin{block}{Basic block}
+        \begin{itemize}
+            \item \lipsum[1][1-2]
+        \end{itemize}
+    \end{block}
+    
+    \begin{alertblock}{Alert block}
+        \begin{itemize}
+            \item \lipsum[1][1-1]\cite{belghazi2018mutual}.
+        \end{itemize}
+    \end{alertblock}
+
+    \begin{exampleblock}{Example block}
+        \begin{enumerate}
+            \item \lipsum[1][1-3]\cite{berisha2014empirical}.
+        \end{enumerate}
+    \end{exampleblock}
+\end{frame}
+
+%#####################################################
+\section{Second section}
+
+%-----------------------------------------------------
+\begin{frame}[t, label=tikzfigure]
+\frametitle{Tikz figure}
+    \begin{itemize}
+        \item An example\cite{Thesis2023}:
+    \end{itemize}
+    
+    \begin{center}
+        \includestandalone[scale=.7]{./figures/example_tikz}
+    \end{center}
+\end{frame}
+
+%-----------------------------------------------------
+\begin{frame}[plain, label=thank] % plain option removes footline
+    \hspace*{-0.45cm}
+    \begin{tikzpicture}[remember picture]
+        % Top-left pattern
+        \node[anchor=north west, inner sep=0pt, outer sep=0pt] 
+        at (current page.north west) {\includegraphics[width=2cm]{figures/top-left-pattern.png}};
+        
+        % Top-right pattern
+        \node[anchor=north east, inner sep=0pt, outer sep=0pt] 
+        at (current page.north east) {\includegraphics[width=2cm]{figures/top-right-pattern.png}};
+        
+        % Bottom-left pattern
+        \node[anchor=south west, inner sep=0pt, outer sep=0pt] 
+        at (current page.south west) {\includegraphics[width=2cm]{figures/bottom-left-pattern.png}};
+        
+        % Bottom-right pattern
+        \node[anchor=south east, inner sep=0pt, outer sep=0pt] 
+        at (current page.south east) {\includegraphics[width=2cm]{figures/bottom-right-pattern.png}};
+        
+        % Centered Text (Main Message)
+        \node[anchor=center] at (current page.center) {
+            \begin{minipage}{0.8\textwidth}
+                \centering
+                {\color{primary} \Huge \textbf{Thanks for your attention!}}
+                \vspace{1cm}
+                
+                \raggedright
+                \hspace{2cm} \huge \textbf{Any questions?} \\
+                \hspace{2cm} \Large You can find me at \\[0.5em] 
+                \hspace{2cm} \checkmark \color{red!80!black}\texttt{email@domain.com}
+            \end{minipage}
+        };
+    \end{tikzpicture}
+\end{frame}
+
+\end{document}

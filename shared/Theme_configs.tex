@@ -1,0 +1,149 @@
+% Primary theme
+\usetheme{Madrid}
+\usefonttheme[onlymath]{serif}
+\setbeamertemplate{frametitle continuation}{}   
+\definecolor{primary}{HTML}{1a3f7a} % Primary color
+\usecolortheme[named=primary]{structure}
+\setbeamertemplate{navigation symbols}{} % Disable navigation buttons
+
+% Customize foot/head colors
+\setbeamercolor{title in head/foot}{fg=white, bg=primary}
+\setbeamercolor{author in head/foot}{fg=white, bg=primary}
+
+\makeatletter
+\setbeamertemplate{footline}{
+	\leavevmode
+	\hbox{
+		\hspace*{-4.2pt}
+		\begin{beamercolorbox}[wd=.33\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+			\usebeamerfont{author in head/foot}\insertshortauthor
+		\end{beamercolorbox}%
+		\color{white}\rule[0pt]{0.1pt}{2.25ex} 
+		\begin{beamercolorbox}[wd=.33\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+			\usebeamerfont{title in head/foot}\insertshorttitle
+		\end{beamercolorbox}%
+		\color{white}\rule[0pt]{0.1pt}{2.25ex} 
+		\begin{beamercolorbox}[wd=.33\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}
+			\usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+			\insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+		\end{beamercolorbox}%
+	}
+	\vskip0pt
+}
+\makeatother
+
+
+% tcbox
+\usepackage{tcolorbox}
+% Define the custom box style for newtcbox with the same style as tcboxmath
+\newtcbox{\myboxtext}{on line,
+	colframe=red,           % Border color (same as tcboxmath)
+	colback=red!20!white,   % Background color (same as tcboxmath)
+	arc=0pt,                % Sharp corners
+	boxrule=1pt,            % Border thickness (same as tcboxmath)
+	size=fbox}              % Box size (fbox)
+
+% Define the box style for math content using tcboxmath style
+\newcommand{\tcboxmath}[1]{\myboxtext{$#1$}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Citation formats
+\usepackage[style=numeric, sorting=none, maxnames=99, hyperref=false]{biblatex} 
+\addbibresource{library.bib}
+\let\svthefootnote\thefootnote
+
+% Remove footnote rule line
+\renewcommand\footnoterule{}
+
+% Set the citation index number in black
+\DeclareFieldFormat{labelnumber}{\textcolor{black}{#1}}
+
+% Adjust line spacing in footnotes
+\setlength{\footnotesep}{0pt}  % No space between footnotes
+\setlength{\skip\footins}{0pt} % Remove space before footnote appears
+% For more specific line spacing in footnotes
+\newcommand{\setfootnote}{%
+	\setlength{\baselineskip}{0pt} % Set tighter line spacing for footnotes
+}
+
+% Move the footnote higher
+\setbeamertemplate{footnote}{%
+	\parindent 0em% Remove indentation for footnotes
+	\nointerlineskip% No space between lines in the footnote
+	\raggedright% Align all footnote content to the left
+	\vspace{0pt}% Increase the distance from the slide content to the footnote
+	\tiny% Reduce the font size of the footnote (or you can use \footnotesize)
+	\insertfootnotetext% Display the footnote content
+	% \vspace{5pt} % Distance from footnote to the bottom
+}
+
+% Modify \cite command
+\DeclareCiteCommand{\cite}
+{\usebibmacro{prenote}}%
+{%  
+	\ifciteseen{}{%
+		\usebibmacro{citeindex}%
+		\let\thefootnote\relax%
+		\renewcommand{\baselinestretch}{0}
+		\footnote[frame]{%
+			\mkbibbrackets{\usebibmacro{cite}}%
+			\setunit{\addnbspace}%
+			\printnames{labelname}% Print the author's name
+			\setunit{\labelnamepunct}%
+			\printfield[citetitle]{title}% Print the article title
+			\setunit{\addcomma\space}% Comma separator
+			\printfield{journaltitle}% Print the journal name
+			\printfield{booktitle}% Print the conference name
+			\printlist{institution}% Print school for theses
+			\setunit{\addcomma\addspace}%
+			\printfield{year}% Print the year
+			.
+		}%
+		\let\thefootnote\svthefootnote%
+	}%
+	\autocite{\thefield{entrykey}}%
+}
+{\addsemicolon\space}
+{\usebibmacro{postnote}}
+
+% Reset footnote and citation counters at the beginning of each frame
+\AtBeginEnvironment{frame}{\setcounter{footnote}{0} \newrefsection} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Automatically create title slides for each section
+\AtBeginSection{
+	\begin{frame}[label=breakslides]
+		\centering
+		\color{primary}
+		{\Huge \bf \insertsection} % Display section title
+		\vskip 0.7cm
+		{\footnotesize
+			\tableofcontents[currentsection, hideothersubsections]
+		}
+	\end{frame}
+}
+
+% Automatically create title slides for each subsection
+\AtBeginSubsection{
+	\begin{frame}[label=breakslides]
+		\color{primary} 
+		\centering
+		\Huge \bf \insertsubsection % Display subsection title in large font
+		\vskip 0.7cm % Space between subsection and section title
+		\large\insertsection  % Display section title
+	\end{frame}
+}
+
+% Customize list styles
+\setbeamertemplate{itemize item}[circle] % Level 1 - Bullet points (circle)
+\setbeamertemplate{itemize subitem}{$\boldsymbol{-}$}    % Level 2 - Dash
+\setbeamertemplate{itemize subsubitem}{$\boldsymbol{+}$} % Level 3 - Plus sign
+
+% Customize enumerate levels with specific shapes for numbers
+\setbeamertemplate{enumerate item}[circle]   % Level 1 - Number inside a circle
+\setbeamertemplate{enumerate subitem}[square]  % Level 2 - Number inside a square
+\setbeamertemplate{enumerate subsubitem}[triangle] % Level 3 - Number inside a triangle
+
+% Customize enumerate and list levels in toc
+\setbeamertemplate{section in toc}[circle]
+\setbeamertemplate{subsection in toc}[square]
