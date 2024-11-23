@@ -22,7 +22,7 @@ This theme is compatible with **TeXstudio**, other offline LaTeX compilers, and 
    - Download or clone this repository.
    - Compile and run the `main.tex` file using the LaTeX engine.
    - If any libraries are missing, you may need to install them manually via the MiKTeX console (for Windows users) or through your LaTeX distribution's package manager.
-   - <span style="color:red;">Note: This template uses TikZ for an advanced figure. You can comment out or remove unused libraries to speed up compilation.</span>
+   - **Note: This template uses TikZ for an advanced figure. You can comment out or remove unused libraries to speed up compilation.**
 
 ## License
 This theme is released under the [**GNU General Public License v3.0**](LICENSE). You are free to modify and distribute the code, provided you adhere to the terms of the license.
