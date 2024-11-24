@@ -6,6 +6,7 @@ This is a custom LaTeX Beamer theme based on the popular Madrid theme. It provid
 - **Primary Color:** Custom blue (`#1a3f7a`) for a sleek, professional look.
 - **Foot/Head Customization:** White text on a blue background for consistency and clarity.
 - **No Navigation Buttons:** Simplified presentation view without navigation symbols.
+- **No Shadow:** Clean, flat design with no shadow effects for a modern look.
 - **Citation Style:** Numeric citations with footnotes in a compact style, perfect for research papers and academic talks.
 - **Dynamic Section/Subsection Titles:** Automatically generates title slides for each section and subsection, with distinct formatting.
 - **Customized Lists:** Unique bullet points and enumeration styles for a more structured presentation.
