@@ -8,6 +8,7 @@ This is a custom LaTeX Beamer theme based on the popular Madrid theme. It provid
 - **No Navigation Buttons:** Simplified presentation view without navigation symbols.
 - **No Shadow:** Clean, flat design with no shadow effects for a modern look.
 - **Citation Style:** Numeric citations with footnotes in a compact style, perfect for research papers and academic talks.
+- **Manual Citation Command:** New command `\manualcite{index}{key}` to generate citations with customized footnotes, allowing you to specify the citation number manually, without following a sequential order.
 - **Dynamic Section/Subsection Titles:** Automatically generates title slides for each section and subsection, with distinct formatting.
 - **Customized Lists:** Unique bullet points and enumeration styles for a more structured presentation.
 - **Clean Footnote Design:** Footnotes are compact and aligned with the content for minimal distraction.

@@ -65,7 +65,7 @@
         
         \column{.5\textwidth}
         \only<2->{
-            Example figure\cite{Crafts2023}:
+            Example figure\manualcite{12}{Crafts2023}:
             \begin{figure}
                 \centering
                 \includegraphics[width=\linewidth]{figures/example_fig.pdf}
@@ -73,7 +73,7 @@
         }
         \only<4-4>{
             \begin{theorem}
-                \lipsum[1][1]\cite{jiang2024terahertz}
+                \lipsum[1][1]\manualcite{10}{jiang2024terahertz}
             \end{theorem}
         }
     \end{columns}
@@ -155,7 +155,7 @@
 \begin{frame}[t, label=tikzfigure]
 \frametitle{Tikz figure}
     \begin{itemize}
-        \item An example\cite{Thesis2023}:
+        \item An example\manualcite{28}{Thesis2023}:
     \end{itemize}
     
     \begin{center}
@@ -169,19 +169,19 @@
     \begin{tikzpicture}[remember picture]
         % Top-left pattern
         \node[anchor=north west, inner sep=0pt, outer sep=0pt] 
-        at (current page.north west) {\includegraphics[width=2cm]{figures/top-left-pattern.png}};
+        at (current page.north west) {\includegraphics[width=2cm]{footages/top-left-pattern.png}};
         
         % Top-right pattern
         \node[anchor=north east, inner sep=0pt, outer sep=0pt] 
-        at (current page.north east) {\includegraphics[width=2cm]{figures/top-right-pattern.png}};
+        at (current page.north east) {\includegraphics[width=2cm]{footages/top-right-pattern.png}};
         
         % Bottom-left pattern
         \node[anchor=south west, inner sep=0pt, outer sep=0pt] 
-        at (current page.south west) {\includegraphics[width=2cm]{figures/bottom-left-pattern.png}};
+        at (current page.south west) {\includegraphics[width=2cm]{footages/bottom-left-pattern.png}};
         
         % Bottom-right pattern
         \node[anchor=south east, inner sep=0pt, outer sep=0pt] 
-        at (current page.south east) {\includegraphics[width=2cm]{figures/bottom-right-pattern.png}};
+        at (current page.south east) {\includegraphics[width=2cm]{footages/bottom-right-pattern.png}};
         
         % Centered Text (Main Message)
         \node[anchor=center] at (current page.center) {

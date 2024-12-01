@@ -53,7 +53,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Citation formats
-\usepackage[style=numeric, sorting=none, maxnames=99, hyperref=false]{biblatex} 
+\usepackage[style=numeric, sorting=none, maxnames=5, hyperref=false]{biblatex} 
 \addbibresource{library.bib}
 \let\svthefootnote\thefootnote
 
@@ -92,9 +92,9 @@
 		\renewcommand{\baselinestretch}{0}
 		\footnote[frame]{%
 			\mkbibbrackets{\usebibmacro{cite}}%
-			\setunit{\addnbspace}%
+			\setunit{\addnbspace\addspace}%
 			\printnames{labelname}% Print the author's name
-			\setunit{\labelnamepunct}%
+			\setunit{\addcomma\addspace}%
 			\printfield[citetitle]{title}% Print the article title
 			\setunit{\addcomma\space}% Comma separator
 			\printfield{journaltitle}% Print the journal name
@@ -152,3 +152,39 @@
 % Customize enumerate and list levels in toc
 \setbeamertemplate{section in toc}[circle]
 \setbeamertemplate{subsection in toc}[square]
+
+\DeclareCiteCommand{\citejournal}
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+    \usebibmacro{journal}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+\DeclareCiteCommand{\citebooktitle}
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+    \usebibmacro{booktitle}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+\DeclareCiteCommand{\citeinstitution}
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+    \printlist{institution}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\makeatletter
+% Define the \manualcite command
+\newcommand{\manualcite}[2]{%
+    \renewcommand{\baselinestretch}{0}
+    \let\thefootnote\relax
+    [#1]\ignorespaces
+    \footnote[frame]{%
+        \mkbibbrackets{#1}\space% Brackets for citation number
+        \citeauthor{#2},\space% Print the author's name
+        \citetitle{#2},\space % Print the title of the work
+        \citejournal{#2}\citebooktitle{#2}\citeinstitution{#2},\space
+        \citeyear{#2}.% Print the year of the citation
+    }%
+}
+\makeatother
+
